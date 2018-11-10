@@ -1,15 +1,15 @@
-# Al-Bayane School Website
+#Al-Bayane School Website
 
 This website helps the school to provide updated information in the form of news and events, 
 announce the available programs and the school branches;beside enhancing the communication with parents through email or direct messaging.
 
-## Website Compatibility
+##Website Compatibility
 
 This website is built using bootstrap library and is Compatible with all devices
 
 ----------------------------------------------------------------------------------
 
-# Working hours report:
+##Working hours report:
 the project took about 19 hours which is much more than the expected time (10 hours), because of the design and the problem solving phase
 a) Planning and research: 2 hours
 b) Data gathering : 1 hours
@@ -17,7 +17,7 @@ c) Design ( logo, banner,colors,fonts and pictures ) : 3 hours
 d) Development of code : 12 hours
 e) Documentation : 1 hours
 
-# Modules used in the website:
+##Modules used in the website:
 1. Index page: includes a slider using bootstrap carousel for displaying news and a calender using FullCalendar library.
 2. Programs page: include a table of school programs available using html table.
 3. School branches page: a map showing the school branches location using google maps api (using my google map api key);
