@@ -3,11 +3,11 @@
 This website helps the school to provide updated information in the form of news and events, 
 announce the available programs and the school branches;beside enhancing the communication with parents through email or direct messaging.
 
-## Website Compatibility
+## Website compatibility
 
 This website is built using bootstrap library and is Compatible with all devices
 
-## Running Website:
+## Running the website:
 All you need is to download the file Al-Bayan website using this link:
 https://github.com/ZeinaKittaneh/Al-Bayane-Website
 then upload it to your server
@@ -35,7 +35,7 @@ e) Documentation : 1 hours
 4. Events page: events are displayed using bootstrap collapsed panels, date object was used to display the amount of time till the next event.
 5. Contact Us: an html from to receive messages from website users, font awesome icons were used for phone, mail and facebook icons.
 
-## information resources:
+## Information resources:
 I used the following websites for coding and design the website:
 1. Bootstrap documentation : https://getbootstrap.com/docs/3.3/
 2. FullCalendar documentaion : https://fullcalendar.io/docs
