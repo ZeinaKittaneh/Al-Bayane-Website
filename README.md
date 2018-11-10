@@ -8,7 +8,7 @@ announce the available programs and the school branches;beside enhancing the com
 This website is built using bootstrap library and is Compatible with all devices
 
 ## Running the website:
-All you need is to download the file Al-Bayan website using this link:
+All you need is to download the file Al-Bayane website using this link:
 https://github.com/ZeinaKittaneh/Al-Bayane-Website
 then upload it to your server
 
