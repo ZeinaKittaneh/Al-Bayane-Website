@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Zeina Kittaneh">
+
+    <title>Branches</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Bootstrap core Javascript -->
+    <script src="jquery/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Website Favicon (compatible with all devices)-->
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+
+  <body onload = "createMap()">
+    <!-- Website Banner -->
+    <div class="container">
+      <img src="images\banner2.jpg" class="img-fluid center-block" alt="Responsive image">
+    </div>
+    <!-- Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav navbar-left">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="programs.html">Programs</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Branches
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contactUs.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container py-4">
+      <div class="row">
+        <section class="col-md-6"><!-- branches information -->
+            <!-- branches container -->
+              <h2 class="special-title fg-blue">School Branches</h2>
+              <hr />
+              <h5 class="fg-blue">Centre Communautaire Laurentien Branch</h5>
+              <p>
+                address: 4505 Henri-Bourassa Blvd W, Saint-Laurent, QC H4L 1A5
+              </p>
+              <h5 class="fg-blue">École Dar Al Iman Branch</h5>
+              <p>
+                address: 12265 Boulevard Laurentien Montréal (Québec) H4K 1N5
+              </p><br />
+        </section>
+
+        <section class="col-md-6"><!-- map -->
+            <div id = "map" style = "height:480px;"></div>
+        </section>
+      </div><!--end row -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-blue navbar-fixed-bottom">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Ecole Al-Bayane 2018</p>
+      </div>
+    </footer>
+
+    <!--Google maps Javascript -->
+    <script>
+      "use strict;"
+      let allBranches = [];// an array to store all branches
+      function Branch(description, location){ // object creation using function
+        this.description = description;
+        this.location = location;
+      }
+
+      function createMap(){
+        //create array to store addresses of all school branches
+        let branch_addresses = ["12265+Boulevard+Laurentien,+Montreal,+QC", "4505+Henri+Bourassa,+Montreal,+QC"];
+        for(let i = 0; i < branch_addresses.length; i++){
+          getLongLat(branch_addresses[i]); // convert address of each branch into coordinates(latitude, Longitude)
+        }
+
+        //get latitude and Longitude based on address:
+        function getLongLat(address){
+            let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyD1ECoXQVoezY6pRccNyxazIM6EPUxyifQ";
+            //1. create request:
+              let request = new XMLHttpRequest()
+              request.open('GET', url, true);
+
+          //2. receive request:
+              request.onload = function(){ //if data was received
+                let mapArray = JSON.parse(request.responseText);
+                console.log(mapArray);
+                let location = mapArray.results[0].geometry.location;
+                lat      = location.lat;
+                lng      = location.lng;
+                let latlng = [lat, lng];
+                console.log("location is " + latlng);
+
+               if(mapArray.results[0].formatted_address == "12265 Boulevard Laurentien, Montréal, QC H4K 1N5, Canada"){
+                 let branch1 = new Branch("Centre Communitaire Laurentien", latlng);
+                 allBranches.push(branch1);
+               }
+               else if (mapArray.results[0].formatted_address == "4505 Boul Henri-Bourassa O, Saint-Laurent, QC H4L 1A5, Canada") {
+                 let branch2 = new Branch("Dar Al Iman", latlng);
+                 allBranches.push(branch2);
+               }
+               if(allBranches.length == 2){
+                 console.log("map called");
+                 initMap();
+               }
+               else {
+                 console.log("not yet");
+               }
+              }
+              //3. send request:
+                  request.send();
+          }
+      }//end of createMap
+      function initMap(){
+        // Initialize Google Maps
+        const mapOptions = {
+          center:new google.maps.LatLng(45.529379,-73.7224937),
+          zoom: 14
+        }
+        //center map on Montreal
+        const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        //Initialize Google Markers
+        for(branch of allBranches) {
+          console.log("here is " + branch.location[0] + ", " + branch.location[1]);
+          let marker = new google.maps.Marker({
+            position: new google.maps.LatLng(branch.location[0], branch.location[1]),
+            title: branch.description,
+            map: map
+          });
+        }
+
+      }
+    </script>
+
+  <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ECoXQVoezY6pRccNyxazIM6EPUxyifQ&callback=initMap"></script>
+
+  </body>
+
+</html>
